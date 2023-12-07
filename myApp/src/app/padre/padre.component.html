@@ -1,0 +1,47 @@
+
+
+<!-- (1) contador
+<h1>Contador: </h1>
+<p>{{valorContador}}</p>
+
+<button (click)="incrementar()">Incrementar</button>
+<button (click)="decrementar()">Decrementar</button> -->
+
+<!-- //(2) mensaje padre a hijo
+<app-hijo [recibeHijo]="mensajePadre"></app-hijo> -->
+
+
+<!-- <app-hijo/>
+<app-hijo [datoHijo]="datoPadre" (eventoHijo)="manejadorDeEventoDelPadre($event)"/> -->
+
+<!-- //(3) mandar y recibir -->
+<!-- <app-hijo 
+(incrementarDesdeHijo)="incrementar()"
+(descrementarDesdeHijo)="decrementar()"
+(mensajeDesdeHijo)="recibirMensaje($event)"
+/>
+
+<h5>El mensaje recibido desde dl hijo es : {{mensajeRecibido}}</h5>
+<h1>Contador: </h1>
+<p>{{valorContador}}</p> -->
+
+<!-- //(4) inyeccion y service
+<h1>{{nombre}}</h1>
+<button type="button" (click)="saludar()">Saludar</button>
+<button type="button" (click)="preguntar()">Preguntar por Hijo</button> -->
+
+<!-- //(5) directivo
+<h1 appEstiloHermano>{{nombre}}</h1>
+<button type="button" (click)="saludar()">Saludar</button>
+<button type="button" (click)="preguntar()">Preguntar por Hijo</button>  -->
+
+//(6) pipe
+<h1>{{nombre | miPipePersonalizado}}</h1>
+<h1>{{nombre | lowercase}}</h1>
+<h1>Cuanto cotiza el dolar:{{dolar | currency}}</h1>
+<h2>El numero PI: {{pi | number: "1.2-2"}}</h2>
+<h2>Fecha de hoy: {{fecha | date: 'short'}}</h2>
+<h2>Fecha de hoy: {{fecha | date: 'dd/MM/yyyy'}}</h2>
+<h2>El porcentaje es: {{factor | percent}}</h2>
+<button type="button" (click)="saludar()">Saludar</button>
+<button type="button" (click)="preguntar()">Preguntar por Hijo</button> 
