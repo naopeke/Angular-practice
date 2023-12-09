@@ -50,9 +50,15 @@ npm start<br>
 ```
 **Actively supported versions**
 https://angular.io/guide/versions
+Node.js
 ```
-nvm install 8.12.0 // to install the version of node.js I wanted
-nvm use 8.12.0  // use the installed version
+nvm install 18.10.0 // to install the version of node.js I wanted
+nvm use 18.10.0  // use the installed version
+```
+Angular (Downgrade @angular-devkit/build-angular)
+```
+npm list @angular-devkit/build-angular
+npm install @angular-devkit/build-angular@16.2.10 --save-dev
 ```
 
 http://localhost:4200/<br>
@@ -236,18 +242,18 @@ https://angular.io/guide/pipes
 ```
 
 **Parámetros por la URL**
-1)Definir una ruta con varios parámetros:
+(1)Definir una ruta con varios parámetros:
 ```
 const routes: Routes = [
     { path: 'producto/:categoria/:id', component: DetalleProductoComponent },
 ];
 ```
 
-2)Enlazar a la ruta con múltiples parámetros:
+(2)Enlazar a la ruta con múltiples parámetros:
 ```
 <a [routerLink]="['/producto', producto.categoria, producto.id]">Ver Detalles</a>
 ```
-
+()
 3)Recuperar los parámetros en el componente:
 ```
 import { ActivatedRoute } from '@angular/router';
@@ -280,4 +286,36 @@ navegarAProducto(productoId: number){
     this.router.navigate(['/producto, productoId]);
 
 }
+```
+
+**Bootstrap**
+```
+npm i bootstrap@5.3.2
+```
+
+ルーティングモジュール(app-routing.module.ts)を手動で追加:
+```
+ng generate module app-routing --flat --module=app
+```
+あるいは
+新しいプロジェクトを--routingフラグをつけて作成
+```
+ng new my-app --routing
+```
+
+node_module - dist - css - bootstrap.min.css - (click) copy relative path 
+=> (paste)angular.json 
+```
+//27, 92
+"styles": [
+    "src/styles.css",
+    "node_modules/bootstrap/dist/css/bootstrap.min.css"
+]
+```
+node_module - dist - js - bootstrap.bundle.min.js - (click) copy relative path
+```
+//30, 95
+    "scripts": [
+    "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    ]
 ```
