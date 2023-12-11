@@ -319,3 +319,144 @@ node_module - dist - js - bootstrap.bundle.min.js - (click) copy relative path
     "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
     ]
 ```
+**Crear otros componentes**
+```
+ng g c home
+```
+```
+ng g c products
+```
+```
+ng g c contact
+```
+```
+ng g c product-detail
+```
+
+**Estructuras de Control**
+ngIf
+```
+<div *ngIf = "mostrarElemento">
+ Contenido visible si mostrarElemento es true.
+</div>
+```
+ngFor
+```
+<ul>
+<li *ngFor="let item of listaItems">
+{{ item }}
+</li>
+</ul>
+```
+ngSwitch
+```
+<div [ngSwitch]="opcion">
+ <p *ngSwitchCase="'opcion1'">Contenido para opción 1</p>
+ <p *ngSwitchCase="'opcion2'">Contenido para opción 2</p>
+ <p *ngSwitchDefault>Contenido por defecto</p>
+</div>
+```
+ngClass
+```
+<div [ngClass]="{'clase1': condicion1, 'clase2': condicion2}">
+  //Contenido con clases dinámicos
+</div>
+```
+ngStyle
+```
+<div [ngStyle]="{'color': color, 'font-size': tamano}">
+  //Contenido con estilos dinámicos
+</div>
+```
+ngContainer
+```
+<ng-container *ngIf="condicion">
+  //Contenido que no afecta al DOM directamente
+</ng-container>
+```
+otras estructuras de control:
+ngTemplate
+ngPlural
+ngComponentOutlet
+
+**Formulario**
+Importar FormsModule para formularios de plantilla
+```
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+    declarations: [
+        //tus componentes aquí
+    ],
+    imports: [
+        FormsModule,
+        // otros modulos que estés utilizando
+    ],
+    bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+Formularios basados en plantillas (Template-driven);
+```
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+<label for ="name">Nombre:</label>
+<input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+
+<label for ="email">Correo:</label>
+<input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+
+<button type="submit">Enviar</button>
+</form>
+```
+Manejo de estado y errores
+```
+<div *ngIf="!name.valid && name.touched">Nombre es obligatorio.</div>
+```
+Importar ReactiveFormsModule para formularios reactivos
+```
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+    declarations: [
+        // tus componentes aquí
+    ],
+    imports: [
+        ReactiveFormsModule
+        // otros módulos que estés utilizando
+    ],
+    bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+Formularios reactivoe (Reactive): utiliza el servicio FormBuilder
+HTML
+```
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<label for="name">Nombre:</label>
+<input type="text" id="name" formControlName="name">
+
+<label for="email">Correo:</label>
+<input type="email" id="email" formControlName="email">
+
+<button type="submit">Enviar</button>
+```
+TS
+```
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+constructor(private fb: FormBuilder){
+    this.myForm = this.fb.group( {
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+    });
+}
+```
+Manejo de estado y errores
+```
+<div *ngIf="myForm.get('name').hasError('required') && myForm.get('name').touched">
+ Nombre es obligatorio.
+</div>
+<div *ngIf="myForm.get('email').hasError('email') && myForm.get('email').touched">
+ Correo no válido.
+</div>
+```
