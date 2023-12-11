@@ -208,6 +208,7 @@ https://angular.io/guide/pipes
 ```
 
 **Rutas(Routes)**
+app-routing.module.ts
 ```
 <p>const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
@@ -217,11 +218,13 @@ https://angular.io/guide/pipes
 ```
 
 **Router Outlet**
+app.component.html
 ```
 <router-outlet></router-outlet>
 ```
 
 **Navegación**
+html
 ```
 <a routerLink="/inicio">Inicio</a>
 ```
